@@ -1,6 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
 const { body, validationResult } = require("express-validator");
+const jwt = require("jsonwebtoken");
 
 exports.users_read = asyncHandler(async (req, res) => {
   res.json({
@@ -35,3 +36,11 @@ exports.users_create = [
     }
   }),
 ];
+
+exports.login = asyncHandler(async (req, res) => {
+    jwt.sign({user: req.body.email}, process.env.SECRET_KEY, {expiresIn: "30m"}, (err, token) => {
+        res.json({
+            token: token,
+        });
+    });
+  });

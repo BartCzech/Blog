@@ -17,7 +17,7 @@ app.get("/api", (req, res) => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/api/users", userRouter);
+app.use("/api", userRouter);
 
 module.exports = app;
 
