@@ -10,6 +10,7 @@ const User = require("./models/userModel");
 const jwt = require("jsonwebtoken");
 
 const userRouter = require("./routes/userRouter");
+const postRouter = require("./routes/postRouter");
 
 dotenv.config();
 connectDB();
@@ -51,6 +52,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(passport.initialize());
 // app.use(passport.session());
 
+app.use("/api/posts", postRouter);
 app.use("/api", userRouter);
 app.post(
   "/api/login",
