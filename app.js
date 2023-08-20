@@ -53,9 +53,9 @@ app.use(passport.initialize());
 // app.use(passport.session());
 
 app.use("/api/posts", postRouter);
-app.use("/api", userRouter);
+app.use("/api/user", userRouter);
 app.post(
-  "/api/login",
+  "/api/user/login",
   passport.authenticate("local", {
     session: false,
   }),
@@ -66,6 +66,8 @@ app.post(
       { expiresIn: "30m" },
       (err, token) => {
         res.json({
+          message: "alles gut",
+          username: req.user.username,
           token: token,
         });
       }

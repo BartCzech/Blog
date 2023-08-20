@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs");
 const User = require("../models/userModel");
 const { body, validationResult } = require("express-validator");
 const jwt = require("jsonwebtoken");
+const generateToken = require("../config/generateToken");
 
 exports.users_read = asyncHandler(async (req, res) => {
   res.json({
@@ -39,6 +40,8 @@ exports.signup = [
               await new_user.save();
               res.json({
                 message: "user successfully created",
+                // we need to send a token using generateToken(new_user._id)
+                token: generateToken(new_user._id),
               });
             }
           }
