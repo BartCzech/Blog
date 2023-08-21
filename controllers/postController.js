@@ -1,5 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const Post = require("../models/postModel");
+const Comment = require("../models/commentModel");
 const { body, validationResult } = require("express-validator");
 const jwt = require("jsonwebtoken");
 
@@ -44,3 +45,23 @@ exports.get_post = asyncHandler(async (req, res, next) => {
   const post = await Post.findById(req.params.id);
   res.json(post);
 });
+
+exports.create_comment = [
+  body("author_anon").escape(),
+  body("text").escape(),
+  asyncHandler(async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.send("Errors occurred");
+    } else {
+      const new_comment = new Comment({
+        post: req.params.id,
+        text: req.body.text,
+        author_anon: req.body.author_anon,
+        timestamp: Date.now(),
+      });
+      await new_comment.save();
+      res.json(new_comment);
+    }
+  }),
+];
