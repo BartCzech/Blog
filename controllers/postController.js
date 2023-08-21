@@ -4,9 +4,8 @@ const { body, validationResult } = require("express-validator");
 const jwt = require("jsonwebtoken");
 
 exports.posts_read = asyncHandler(async (req, res) => {
-  res.json({
-    message: "posts read",
-  });
+  const all_posts = await Post.find();
+  res.json(all_posts);
 });
 
 exports.find_posts = asyncHandler(async (req, res) => {
@@ -40,3 +39,8 @@ exports.create_post = [
     }
   }),
 ];
+
+exports.get_post = asyncHandler(async (req, res, next) => {
+  const post = await Post.findById(req.params.id);
+  res.json(post);
+});
