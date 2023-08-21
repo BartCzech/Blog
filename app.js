@@ -11,6 +11,7 @@ const jwt = require("jsonwebtoken");
 
 const userRouter = require("./routes/userRouter");
 const postRouter = require("./routes/postRouter");
+const { notFound, errorHandler } = require("./middleware/errorHandling");
 
 dotenv.config();
 connectDB();
@@ -74,6 +75,9 @@ app.post(
     );
   }
 );
+
+app.use(notFound);
+app.use(errorHandler);
 
 module.exports = app;
 
