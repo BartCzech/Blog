@@ -42,8 +42,11 @@ exports.create_post = [
 ];
 
 exports.get_post = asyncHandler(async (req, res, next) => {
-  const post = await Post.findById(req.params.id);
-  res.json(post);
+  const [post, comments] = await Promise.all([
+    Post.findById(req.params.id).exec(),
+    Comment.find({ post: req.params.id }).exec()
+  ]);
+  res.json({post: post, comments: comments});
 });
 
 exports.create_comment = [
