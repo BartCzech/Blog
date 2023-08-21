@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from './App.jsx'
 import './index.css'
 import AllPostsPage from "./components/AllPostsPage.jsx";
+import SinglePostPage from "./components/SinglePostPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
   {
     path: "/api/posts",
     element: <AllPostsPage />,
+  },
+  {
+    path: "/api/posts/:postId",
+    element: <SinglePostPage />,
   },
 ]);
 
