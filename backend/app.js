@@ -8,6 +8,7 @@ var logger = require("morgan");
 const connectDB = require("./config/db");
 const User = require("./models/userModel");
 const jwt = require("jsonwebtoken");
+const cors = require('cors');
 
 const userRouter = require("./routes/userRouter");
 const postRouter = require("./routes/postRouter");
@@ -16,7 +17,7 @@ const { notFound, errorHandler } = require("./middleware/errorHandling");
 dotenv.config();
 connectDB();
 const app = express();
-
+app.use(cors());
 app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
 
 passport.use(
