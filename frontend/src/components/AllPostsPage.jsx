@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import axios from 'axios'
 
-function Homepage() {
+function AllPostsPage() {
   const [posts, setPosts] = useState([]);
 
   const fetchPosts = async () => {
@@ -26,4 +26,4 @@ function Homepage() {
   );
 }
 
-export default Homepage;
+export default AllPostsPage;
