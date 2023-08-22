@@ -1,0 +1,56 @@
+.create-post-container {
+  max-width: 800px; /* Increased max-width for a wider form */
+  margin: 0 auto;
+  padding: 40px; /* Increased padding for more space */
+  background-color: #1e1e1e;
+  color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.error-message {
+  color: #ff6b6b;
+  margin-bottom: 15px; /* Increased margin for more spacing */
+  font-size: 20px; /* Larger font size for error messages */
+}
+
+.success-message {
+  color: #63d471;
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+.post-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 30px; /* Increased margin for more spacing */
+}
+
+label {
+  font-size: 24px; /* Larger font size for labels */
+  margin-bottom: 10px;
+}
+
+input[type="text"],
+textarea {
+  padding: 20px; /* Increased padding for bigger fields */
+  font-size: 18px; /* Larger font size for input fields */
+  background-color: #2e2e2e;
+  color: #fff;
+  border: 1px solid #555;
+  border-radius: 8px; /* Increased border radius for rounded corners */
+  width: 100%;
+}
+
+.submit-button {
+  padding: 15px; /* Adjusted padding for button size consistency */
+  background-color: #17a2b8;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 20px; /* Larger font size for button */
+}

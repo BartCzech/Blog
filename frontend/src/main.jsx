@@ -5,6 +5,8 @@ import App from './App.jsx'
 import './index.css'
 import AllPostsPage from "./components/AllPostsPage.jsx";
 import SinglePostPage from "./components/SinglePostPage.jsx";
+import CreatePostPage from "./components/CreatePostPage.jsx";
+import LoginPage from './components/LoginPage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -12,8 +14,16 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
+    path: "/api/user/login",
+    element: <LoginPage />,
+  },
+  {
     path: "/api/posts",
     element: <AllPostsPage />,
+  },
+  {
+    path: "/api/posts/create",
+    element: <CreatePostPage />,
   },
   {
     path: "/api/posts/:postId",

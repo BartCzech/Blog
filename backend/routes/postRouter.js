@@ -5,6 +5,7 @@ const { protect } = require('../middleware/authMiddleware');
 
 router.get('/', postController.posts_read);
 router.post('/', postController.find_posts);
+router.get('/create', protect, postController.get_create_post);
 router.post('/create', protect, postController.create_post);
 router.get('/:id', postController.get_post);
 router.post('/:id', postController.create_comment);

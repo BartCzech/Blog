@@ -68,3 +68,7 @@ exports.create_comment = [
     }
   }),
 ];
+
+exports.get_create_post = asyncHandler(async (req, res, next) => {
+  res.json({message: "Accessing get create post"})
+});
