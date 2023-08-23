@@ -43,7 +43,7 @@ exports.create_post = [
 
 exports.get_post = asyncHandler(async (req, res, next) => {
   const [post, comments] = await Promise.all([
-    Post.findById(req.params.id).exec(),
+    Post.findById(req.params.id).populate("author").exec(),
     Comment.find({ post: req.params.id }).exec()
   ]);
   res.json({post: post, comments: comments});

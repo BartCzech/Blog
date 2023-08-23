@@ -29,6 +29,7 @@
   margin-bottom: 30px; /* Increased margin for more spacing */
 }
 
+
 label {
   font-size: 24px; /* Larger font size for labels */
   margin-bottom: 10px;
@@ -45,6 +46,9 @@ textarea {
   width: 100%;
 }
 
+textarea {
+  height: 500px;
+}
 .submit-button {
   padding: 15px; /* Adjusted padding for button size consistency */
   background-color: #17a2b8;

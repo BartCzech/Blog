@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import './LoginPage.css'; // Import your custom CSS file for styling
+import './LoginPage.css'; 
 
 function LoginPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [message, setMessage] = useState('');
-  const [countdown, setCountdown] = useState(5);
+  const [loginStatus, setLoginStatus] = useState(null);
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -15,35 +14,43 @@ function LoginPage() {
     setPassword(event.target.value);
   };
 
-  const handleLogin = async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Simulating login logic
-    if (username === 'user' && password === 'password') {
-      setMessage('Logged in! Redirecting to the home page in ' + countdown);
-      startCountdown();
-    } else {
-      setMessage('Login failed!');
-      setUsername('');
-      setPassword('');
+    const loginData = {
+      username: username,
+      password: password,
+    };
+
+    try {
+      const response = await fetch('http://127.0.0.1:3000/api/user/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(loginData),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        const token = data.token;
+        localStorage.setItem('token', token);
+        console.log('Token saved to localStorage:', token);
+        setLoginStatus('Logged in');
+      } else {
+        console.error('Login failed');
+        setLoginStatus('Wrong credentials');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setLoginStatus('Error occurred');
     }
-  };
-
-  const startCountdown = () => {
-    const timer = setInterval(() => {
-      setCountdown((prevCountdown) => prevCountdown - 1);
-    }, 1000);
-
-    setTimeout(() => {
-      clearInterval(timer);
-      window.location.href = 'http://localhost:5173/';
-    }, (countdown + 1) * 1000);
   };
 
   return (
     <div className="login-container">
       <h1 className="login-header">Login</h1>
-      <form onSubmit={handleLogin} className="login-form">
+      <form onSubmit={handleSubmit} className="login-form">
         <div className="form-group">
           <label className="label">Username:</label>
           <input
@@ -66,9 +73,9 @@ function LoginPage() {
         </div>
         <button type="submit" className="submit-button">Login</button>
       </form>
-      {message && (
-        <p className={message.includes('Logged in') ? 'success-message' : 'error-message'}>
-          {message}
+      {loginStatus && (
+        <p className={loginStatus === 'Logged in' ? 'success' : 'error'}>
+          {loginStatus}
         </p>
       )}
     </div>
