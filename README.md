@@ -1,7 +1,7 @@
 # Blog API Project - README
 
 ## Description
-This project demonstrates a robust backend API integrated with both reader and author front-end interfaces.  
+This project demonstrates a simple backend API integrated with both reader and author front-end interfaces.  
 https://basicblog-1ye8.onrender.com/
 
 ## Technologies Used
