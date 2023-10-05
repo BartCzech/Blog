@@ -10,7 +10,8 @@ This project demonstrates a robust backend API integrated with both reader and a
 - **Express**
 - **MongoDB**
 - **Mongoose**
-
+- **React.js**
+  
 ## Features Implemented
 
 **Backend:**
